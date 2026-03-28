@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jurich Conference – Schedule</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Georgia', serif;
+      background: url('theme.png') center center / cover fixed;
+      padding: 40px 20px 60px;
+    }
+
+    /* frosted glass card wrapping everything */
+    .card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 40px rgba(130, 80, 180, 0.18);
+      overflow: hidden;
+    }
+
+/* header */
+    header {
+      background: linear-gradient(135deg, rgba(180, 140, 220, 0.55), rgba(150, 170, 230, 0.45));
+      padding: 36px 40px 28px;
+      text-align: center;
+      border-bottom: 1px solid rgba(180, 140, 220, 0.3);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #4a2970;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      color: #6b4899;
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    /* day sections */
+    .day-block {
+      padding: 0 28px 32px;
+    }
+
+    .day-heading {
+      background: linear-gradient(90deg, rgba(170, 130, 210, 0.5), rgba(140, 160, 220, 0.3));
+      color: #3b1f60;
+      font-size: 1.15rem;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      margin: 28px -28px 0;
+    }
+
+    /* schedule table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+
+    thead th {
+      background: rgba(160, 120, 200, 0.2);
+      color: #4a2970;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 2px solid rgba(160, 120, 200, 0.4);
+    }
+
+    thead th:first-child  { width: 150px; }
+    thead th:nth-child(2) { width: auto; }
+    thead th:last-child   { width: 160px; }
+
+    tbody tr {
+      transition: background 0.15s;
+    }
+    tbody tr:hover td {
+      background: rgba(200, 170, 240, 0.18);
+    }
+
+    td {
+      padding: 12px 14px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(180, 140, 220, 0.2);
+      color: #2c1a50;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .time-cell {
+      font-weight: bold;
+      color: #6b3fa0;
+      white-space: nowrap;
+      font-size: 0.85rem;
+    }
+
+    .session-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(160, 120, 200, 0.22);
+      color: #5a2d8a;
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-bottom: 4px;
+    }
+
+    .session-title {
+      font-weight: bold;
+      color: #3b1f60;
+      margin-bottom: 2px;
+    }
+
+    .session-title a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(107, 63, 160, 0.4);
+      text-underline-offset: 3px;
+    }
+    .session-title a:hover {
+      color: #7a2fa0;
+      text-decoration-color: #7a2fa0;
+    }
+
+    .session-detail {
+      color: #5a4070;
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+
+    .session-detail a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(107, 63, 160, 0.4);
+      text-underline-offset: 3px;
+    }
+    .session-detail a:hover {
+      color: #7a2fa0;
+      text-decoration-color: #7a2fa0;
+    }
+
+    .location-cell {
+      font-size: 0.82rem;
+      color: #7a4aaa;
+      font-style: italic;
+    }
+
+    /* CEU note */
+    .ceu-note {
+      text-align: center;
+      padding: 18px 28px;
+      color: #6b3fa0;
+      font-size: 0.85rem;
+      font-style: italic;
+      border-top: 1px solid rgba(180, 140, 220, 0.3);
+      background: rgba(180, 140, 220, 0.08);
+    }
+
+    /* asterisk legend */
+    .legend {
+      text-align: center;
+      padding: 10px 28px 20px;
+      color: #7a5590;
+      font-size: 0.8rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      color: #8866aa;
+      font-size: 0.75rem;
+      border-top: 1px solid rgba(180, 140, 220, 0.25);
+    }
+
+    footer a {
+      color: #6b3fa0;
+      text-decoration: underline;
+      text-decoration-color: rgba(107, 63, 160, 0.4);
+      text-underline-offset: 3px;
+    }
+    footer a:hover {
+      color: #7a2fa0;
+      text-decoration-color: #7a2fa0;
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 700px) {
+      body { padding: 16px 10px 40px; }
+
+      header { padding: 60px 20px 24px; }
+      header h1 { font-size: 1.4rem; }
+      header p  { font-size: 0.85rem; }
+
+      .day-block { padding: 0 14px 24px; }
+      .day-heading { margin: 20px -14px 0; font-size: 1rem; padding: 10px 14px; }
+
+      /* stack table into card-like rows on small screens */
+      table, thead, tbody, tr, th, td { display: block; }
+      thead { display: none; }
+
+      tbody tr {
+        border: 1px solid rgba(180, 140, 220, 0.25);
+        border-radius: 8px;
+        margin-bottom: 10px;
+        padding: 10px 12px;
+        background: rgba(255,255,255,0.4);
+      }
+      tbody tr:hover td { background: none; }
+
+      td {
+        padding: 3px 0;
+        border-bottom: none;
+        font-size: 0.88rem;
+      }
+
+      .time-cell {
+        font-size: 0.8rem;
+        color: #7a4aaa;
+        margin-bottom: 4px;
+      }
+
+      .location-cell::before { content: "📍 "; font-style: normal; }
+      .location-cell { margin-top: 4px; }
+
+      .leaf { width: 120px; height: 130px; }
+    }
+
+    @media (max-width: 400px) {
+      header h1 { font-size: 1.2rem; }
+      .leaf { width: 90px; height: 100px; }
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+<header>
+    <h1>Jurich Conference 2026</h1>
+    <p>Venue: K-State Union, 2nd Floor, KSU &nbsp;·&nbsp; Dates: April 3–4, 2026</p>
+  </header>
+
+  <!-- ── FRIDAY ─────────────────────────────────────────── -->
+  <div class="day-block">
+    <div class="day-heading">Friday, April 3</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Session</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td class="time-cell">8:30 am</td>
+          <td><span class="session-label">Check-In</span></td>
+          <td class="location-cell">Outside Big 12 Room</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">9:00 am</td>
+          <td>
+            <span class="session-label">Welcome</span>
+            <div class="session-detail">Ayoka Lee, President, CFT Alumni Board</div>
+          </td>
+          <td class="location-cell">Big 12</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">9:15 – 10:15 am</td>
+          <td>
+            <span class="session-label">Breakout Session</span>
+            <div class="session-title"><a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQBwebAEcKYUQ4ty2PXJqbl3ATupOixiqJo21ouc8AessPU?e=s63Os9" target="_blank" rel="noopener">*We're in this Together: Integrating Provider-, Team-, and Care Systems-approaches to Mitigate Compassion Fatigue</a></div>
+            <div class="session-detail">Tai Mendenhall, Professor, University of Minnesota</div>
+          </td>
+          <td class="location-cell">Big 12</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell"></td>
+          <td>
+            <div class="session-title">*<a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQAxA7SgaRXQSpSUiNy-w9qaAaK7FPlF8Qo-MxSHc4n-lPg?e=ci4jkb" target="_blank" rel="noopener">Modern Family Therapy</a></div>
+            <div class="session-detail">Heidi Vela, LCMFT, Private Practice, Manhattan, KS</div>
+          </td>
+          <td class="location-cell">Flint Hills Room</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">10:30 – 11:30 am</td>
+          <td>
+            <span class="session-label">Breakout Session</span>
+            <div class="session-title">*<a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQAJfAY1f5HiQY8s0p7kJa5LAcZstMjJQoE3WYCfw-6RsdM?e=fIx00e" target="_blank" rel="noopener">Therapists in Action: Community Activism and Resistance</a></div>
+            <div class="session-detail">Heather Love, Associate Professor, University of Alabama</div>
+          </td>
+          <td class="location-cell">Big 12</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell"></td>
+          <td>
+            <div class="session-title">*Panel: <a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQCgGGhixNyMR468dxen9hqjAZFbRBYXtom4JWO-yAPFbKQ?e=EyCPxY" target="_blank" rel="noopener">Self-care</a></div>
+            <div class="session-detail">
+              Moderator: Jurdene Cole, Owner, Sage and Summit Therapy and Consulting<br/>
+              Brooke Balderson, LMFT, Kelly and Associates Therapeutic Services<br/>
+              Maris Deaver, LMFT, Andrews and Associates Counseling<br/>
+              Nicole Gonzalez, Behavioral Health Director, Konza Prairie Community Health Center<br/>
+              Ayoka Lee, Mental Health Clinician, K-State Athletics
+            </div>
+          </td>
+          <td class="location-cell">Flint Hills Room</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">11:45 am – 12:30 pm</td>
+          <td>
+            <span class="session-label">Lunch</span>
+            <div class="session-detail">Optional 10-minute mindfulness walk at 12:10 pm</div>
+          </td>
+          <td class="location-cell">Bluemont Room</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">12:30 – 1:00 pm</td>
+          <td>
+            <span class="session-label">Engagement Activity</span>
+            <div class="session-detail">TV family genogram challenge</div>
+          </td>
+          <td class="location-cell">Bluemont Room</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">1:00 – 2:00 pm</td>
+          <td>
+            <span class="session-label">*Poster Presentations</span>
+            <div class="session-detail">K-State CFT Students</div>
+          </td>
+          <td class="location-cell">1st Floor Foyer</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">2:15 – 4:15 pm</td>
+          <td>
+            <span class="session-label">Special Panel</span>
+            <div class="session-title"><a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQA-9vIcaRnYTIG795Wsfa35AUy2DHDuxMyokoKyPNeMtbs?e=7EDDV3" target="_blank" rel="noopener">The Plight of Immigration</a></div>
+            <div class="session-detail">
+              Moderator: Marcos Mendez, Staff Psychotherapist/Training Manager, Counseling and Psychological Services, K-State<br/>
+              Robbin Cole, Pawnee Mental Health CEO (retired)<br/>
+              Lalo Muñoz, Executive Director, DOJ Accredited Representative, El Centro Topeka, KS<br/>
+              Virginia Rodriguez, Executive Director, Manhattan Area Resettlement Team, Manhattan, KS
+            </div>
+          </td>
+          <td class="location-cell">Big 12</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">4:30 – 5:30 pm</td>
+          <td>
+            <span class="session-label">Breakout Session</span>
+            <div class="session-title">*<a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQAQkFRAkAZ8QZT6WDQ_QdOYAZrgj99Iw64G3cx5c8QIVgg?e=DSFi2i" target="_blank" rel="noopener">The Role of Therapy Dogs in Trauma-Informed Care</a></div>
+            <div class="session-detail">Kara Langin, Assistant Professor, Washburn University</div>
+          </td>
+          <td class="location-cell">Big 12</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell"></td>
+          <td>
+            <div class="session-title">Panel: <a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQA4hZ27SoO_T4R6r3nhfKGQAXHm9AO6VEqScPwPm18FdS0?e=97hlxN" target="_blank" rel="noopener">Preparing for Academic Positions</a></div>
+            <div class="session-detail">
+              Moderator: Jared Durtschi, Professor, CFT, K-State<br/>
+              Stacy Conner, Associate Professor/Associate Dean, Washburn University<br/>
+              Katelyn Coburn, Assistant Professor, University of Nebraska-Lincoln<br/>
+              Adriatik Likcani, Associate Professor, University of Central Missouri<br/>
+              Kale Monk, Associate Professor, University of Missouri
+            </div>
+          </td>
+          <td class="location-cell">Flint Hills Room</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">5:45 – 7:30 pm</td>
+          <td>
+            <span class="session-label">Dinner</span>
+            <div class="session-detail">
+              CFT Program news: Glade Topham, CFT Program Director<br/>
+              Family Center news: Patricia Barros, CFT Clinical Director<br/>
+              Recognition of CFT alumni · Auction: Live and Silent
+            </div>
+          </td>
+          <td class="location-cell">Bluemont Room</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">7:30 – 9:30 pm</td>
+          <td>
+            <span class="session-label">Dance</span>
+            <div class="session-detail">CFT Student Association Organization</div>
+          </td>
+          <td class="location-cell">Bluemont Room</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div><!-- /friday -->
+
+  <!-- ── SATURDAY ────────────────────────────────────────── -->
+  <div class="day-block">
+    <div class="day-heading">Saturday, April 4</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Session</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td class="time-cell">8:30 am</td>
+          <td><span class="session-label">Check-In</span></td>
+          <td class="location-cell">Outside Big 12 Room</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">9:00 – 11:00 am</td>
+          <td>
+            <span class="session-label">*Plenary</span>
+            <div class="session-title"><a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQDyt-UZOzZHQJk1u7v5rgGNAbqvoJtr-1ouh7H6qQNHQTc?e=z3AhdG" target="_blank" rel="noopener">Holding Space for Healing: Mental Health Practices for Communities Navigating Adversity</a></div>
+            <div class="session-detail"><a href="https://ksuemailprod-my.sharepoint.com/personal/jbaptist_ksu_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fjbaptist%5Fksu%5Fedu%2FDocuments%2FJurich%202026%2FJurich%20conference%202026%2FBrochure%20info%2FBio%20%26%20Abstracts%2FPDFs%2FLorin%20K%2Epdf&parent=%2Fpersonal%2Fjbaptist%5Fksu%5Fedu%2FDocuments%2FJurich%202026%2FJurich%20conference%202026%2FBrochure%20info%2FBio%20%26%20Abstracts%2FPDFs&ga=1" target="_blank" rel="noopener">Lorin Kelly</a>, LCMFT, Owner, Kelly &amp; Associates Therapeutic Services, Lincoln, NE</div>
+          </td>
+          <td class="location-cell">Big 12</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">11:15 am – 12:15 pm</td>
+          <td>
+            <span class="session-label">Breakout Session</span>
+            <div class="session-title">*Therapeutic Interventions to Support LGBTQ+ Clients who have Experienced Religious Harm and Trauma</div>
+            <div class="session-detail">Katelyn Coburn, Assistant Professor, University of Nebraska-Lincoln</div>
+          </td>
+          <td class="location-cell">Big 12</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell"></td>
+          <td>
+            <div class="session-title">Panel: Preparing for Clinical Positions</div>
+            <div class="session-detail">
+              Moderator: Melissa Greer, Owner, Insight Psychological Services<br/>
+              Cameron Bennett, Owner, JMB Therapy<br/>
+              Lorin Kelly, Owner, Kelly &amp; Associates Therapeutic Services<br/>
+              Julia Romo-Figueroa, Behavioral Health Therapist, Konza Prairie Community Health Center
+            </div>
+          </td>
+          <td class="location-cell">Flint Hills Room</td>
+        </tr>
+
+        <tr>
+          <td class="time-cell">12:15 – 12:30 pm</td>
+          <td>
+            <span class="session-label">Closing</span>
+            <div class="session-detail">Glade Topham, CFT Program Director, K-State</div>
+          </td>
+          <td class="location-cell">Big 12</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div><!-- /saturday -->
+
+  <div class="ceu-note">*CEUs on Ethics and Psychopathology available for starred sessions</div>
+
+  <footer><a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQDOcRWx62BQTb592KsiEOFsAZhUd8lndvH_NjRzSi-eIBI?e=sGAyF4" target="_blank" rel="noopener">Tony Jurich</a> &nbsp;·&nbsp; &copy; <span id="yr"></span> All rights reserved</footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+</div><!-- /card -->
+</body>
+</html>
