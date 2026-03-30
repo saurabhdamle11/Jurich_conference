@@ -1,0 +1,298 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  font-family: 'Georgia', serif;
+  background: url('theme.png') center center / cover fixed;
+  padding: 40px 20px 60px;
+}
+
+/* frosted glass card wrapping everything */
+.card {
+  max-width: 860px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 40px rgba(130, 80, 180, 0.18);
+  overflow: hidden;
+}
+
+/* header */
+header {
+  background: linear-gradient(135deg, rgba(180, 140, 220, 0.55), rgba(150, 170, 230, 0.45));
+  padding: 36px 40px 28px;
+  text-align: center;
+  border-bottom: 1px solid rgba(180, 140, 220, 0.3);
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #4a2970;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+header p {
+  color: #6b4899;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* day sections */
+.day-block {
+  padding: 0 28px 32px;
+}
+
+.day-heading {
+  background: linear-gradient(90deg, rgba(170, 130, 210, 0.5), rgba(140, 160, 220, 0.3));
+  color: #3b1f60;
+  font-size: 1.15rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  margin: 28px -28px 0;
+}
+
+/* schedule table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+thead th {
+  background: rgba(160, 120, 200, 0.2);
+  color: #4a2970;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid rgba(160, 120, 200, 0.4);
+}
+
+thead th:first-child  { width: 150px; }
+thead th:nth-child(2) { width: auto; }
+thead th:last-child   { width: 160px; }
+
+tbody tr {
+  transition: background 0.15s;
+}
+tbody tr:hover td {
+  background: rgba(200, 170, 240, 0.18);
+}
+
+td {
+  padding: 12px 14px;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(180, 140, 220, 0.2);
+  color: #2c1a50;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.time-cell {
+  font-weight: bold;
+  color: #6b3fa0;
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+.session-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(160, 120, 200, 0.22);
+  color: #5a2d8a;
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-bottom: 4px;
+}
+
+.session-title {
+  font-weight: bold;
+  color: #3b1f60;
+  margin-bottom: 2px;
+}
+
+.session-title a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(107, 63, 160, 0.4);
+  text-underline-offset: 3px;
+}
+.session-title a:hover {
+  color: #7a2fa0;
+  text-decoration-color: #7a2fa0;
+}
+
+.session-detail {
+  color: #5a4070;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+.session-detail a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(107, 63, 160, 0.4);
+  text-underline-offset: 3px;
+}
+.session-detail a:hover {
+  color: #7a2fa0;
+  text-decoration-color: #7a2fa0;
+}
+
+.location-cell {
+  font-size: 0.82rem;
+  color: #7a4aaa;
+  font-style: italic;
+}
+
+/* CEU note */
+.ceu-note {
+  text-align: center;
+  padding: 18px 28px;
+  color: #6b3fa0;
+  font-size: 0.85rem;
+  font-style: italic;
+  border-top: 1px solid rgba(180, 140, 220, 0.3);
+  background: rgba(180, 140, 220, 0.08);
+}
+
+/* asterisk legend */
+.legend {
+  text-align: center;
+  padding: 10px 28px 20px;
+  color: #7a5590;
+  font-size: 0.8rem;
+}
+
+footer {
+  text-align: center;
+  padding: 18px;
+  color: #8866aa;
+  font-size: 0.75rem;
+  border-top: 1px solid rgba(180, 140, 220, 0.25);
+}
+
+footer a {
+  color: #6b3fa0;
+  text-decoration: underline;
+  text-decoration-color: rgba(107, 63, 160, 0.4);
+  text-underline-offset: 3px;
+}
+footer a:hover {
+  color: #7a2fa0;
+  text-decoration-color: #7a2fa0;
+}
+
+/* ── Expand / Collapse ───────────────────────────────── */
+.expand-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: bold;
+  color: #3b1f60;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: rgba(107, 63, 160, 0.4);
+  text-underline-offset: 3px;
+}
+.expand-btn:hover {
+  color: #7a2fa0;
+  text-decoration-color: #7a2fa0;
+}
+.expand-btn::after {
+  content: " ▸";
+  font-size: 0.75em;
+  color: #9b6ec8;
+}
+.expand-btn.open::after {
+  content: " ▾";
+}
+.expand-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 14px;
+  padding-right: 14px;
+  background: rgba(180, 140, 220, 0.1);
+  border: 1px solid rgba(160, 120, 200, 0.4);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #3b1f60;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.6;
+  opacity: 0;
+  transition: grid-template-rows 0.3s ease, padding 0.3s ease, margin-top 0.3s ease, opacity 0.3s ease;
+}
+.expand-content.open {
+  grid-template-rows: 1fr;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 8px;
+  opacity: 1;
+}
+.expand-content > span {
+  overflow: hidden;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 700px) {
+  body { padding: 16px 10px 40px; }
+
+  header { padding: 60px 20px 24px; }
+  header h1 { font-size: 1.4rem; }
+  header p  { font-size: 0.85rem; }
+
+  .day-block { padding: 0 14px 24px; }
+  .day-heading { margin: 20px -14px 0; font-size: 1rem; padding: 10px 14px; }
+
+  /* stack table into card-like rows on small screens */
+  table, thead, tbody, tr, th, td { display: block; }
+  thead { display: none; }
+
+  tbody tr {
+    border: 1px solid rgba(180, 140, 220, 0.25);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.4);
+  }
+  tbody tr:hover td { background: none; }
+
+  td {
+    padding: 3px 0;
+    border-bottom: none;
+    font-size: 0.88rem;
+  }
+
+  .time-cell {
+    font-size: 0.8rem;
+    color: #7a4aaa;
+    margin-bottom: 4px;
+  }
+
+  .location-cell::before { content: "📍 "; font-style: normal; }
+  .location-cell { margin-top: 4px; }
+
+  .leaf { width: 120px; height: 130px; }
+}
+
+@media (max-width: 400px) {
+  header h1 { font-size: 1.2rem; }
+  .leaf { width: 90px; height: 100px; }
+}

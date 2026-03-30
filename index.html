@@ -4,249 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jurich Conference – Schedule</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      min-height: 100vh;
-      font-family: 'Georgia', serif;
-      background: url('theme.png') center center / cover fixed;
-      padding: 40px 20px 60px;
-    }
-
-    /* frosted glass card wrapping everything */
-    .card {
-      max-width: 860px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 8px 40px rgba(130, 80, 180, 0.18);
-      overflow: hidden;
-    }
-
-/* header */
-    header {
-      background: linear-gradient(135deg, rgba(180, 140, 220, 0.55), rgba(150, 170, 230, 0.45));
-      padding: 36px 40px 28px;
-      text-align: center;
-      border-bottom: 1px solid rgba(180, 140, 220, 0.3);
-    }
-
-    header h1 {
-      font-size: 2rem;
-      color: #4a2970;
-      letter-spacing: 0.04em;
-      margin-bottom: 6px;
-    }
-
-    header p {
-      color: #6b4899;
-      font-size: 1rem;
-      font-style: italic;
-    }
-
-    /* day sections */
-    .day-block {
-      padding: 0 28px 32px;
-    }
-
-    .day-heading {
-      background: linear-gradient(90deg, rgba(170, 130, 210, 0.5), rgba(140, 160, 220, 0.3));
-      color: #3b1f60;
-      font-size: 1.15rem;
-      font-weight: bold;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 12px 20px;
-      margin: 28px -28px 0;
-    }
-
-    /* schedule table */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 12px;
-    }
-
-    thead th {
-      background: rgba(160, 120, 200, 0.2);
-      color: #4a2970;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 10px 14px;
-      text-align: left;
-      border-bottom: 2px solid rgba(160, 120, 200, 0.4);
-    }
-
-    thead th:first-child  { width: 150px; }
-    thead th:nth-child(2) { width: auto; }
-    thead th:last-child   { width: 160px; }
-
-    tbody tr {
-      transition: background 0.15s;
-    }
-    tbody tr:hover td {
-      background: rgba(200, 170, 240, 0.18);
-    }
-
-    td {
-      padding: 12px 14px;
-      vertical-align: top;
-      border-bottom: 1px solid rgba(180, 140, 220, 0.2);
-      color: #2c1a50;
-      font-size: 0.9rem;
-      line-height: 1.55;
-    }
-
-    .time-cell {
-      font-weight: bold;
-      color: #6b3fa0;
-      white-space: nowrap;
-      font-size: 0.85rem;
-    }
-
-    .session-label {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: bold;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: rgba(160, 120, 200, 0.22);
-      color: #5a2d8a;
-      border-radius: 4px;
-      padding: 2px 7px;
-      margin-bottom: 4px;
-    }
-
-    .session-title {
-      font-weight: bold;
-      color: #3b1f60;
-      margin-bottom: 2px;
-    }
-
-    .session-title a {
-      color: inherit;
-      text-decoration: underline;
-      text-decoration-color: rgba(107, 63, 160, 0.4);
-      text-underline-offset: 3px;
-    }
-    .session-title a:hover {
-      color: #7a2fa0;
-      text-decoration-color: #7a2fa0;
-    }
-
-    .session-detail {
-      color: #5a4070;
-      font-style: italic;
-      font-size: 0.85rem;
-    }
-
-    .session-detail a {
-      color: inherit;
-      text-decoration: underline;
-      text-decoration-color: rgba(107, 63, 160, 0.4);
-      text-underline-offset: 3px;
-    }
-    .session-detail a:hover {
-      color: #7a2fa0;
-      text-decoration-color: #7a2fa0;
-    }
-
-    .location-cell {
-      font-size: 0.82rem;
-      color: #7a4aaa;
-      font-style: italic;
-    }
-
-    /* CEU note */
-    .ceu-note {
-      text-align: center;
-      padding: 18px 28px;
-      color: #6b3fa0;
-      font-size: 0.85rem;
-      font-style: italic;
-      border-top: 1px solid rgba(180, 140, 220, 0.3);
-      background: rgba(180, 140, 220, 0.08);
-    }
-
-    /* asterisk legend */
-    .legend {
-      text-align: center;
-      padding: 10px 28px 20px;
-      color: #7a5590;
-      font-size: 0.8rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 18px;
-      color: #8866aa;
-      font-size: 0.75rem;
-      border-top: 1px solid rgba(180, 140, 220, 0.25);
-    }
-
-    footer a {
-      color: #6b3fa0;
-      text-decoration: underline;
-      text-decoration-color: rgba(107, 63, 160, 0.4);
-      text-underline-offset: 3px;
-    }
-    footer a:hover {
-      color: #7a2fa0;
-      text-decoration-color: #7a2fa0;
-    }
-
-    /* ── Responsive ──────────────────────────────────────── */
-    @media (max-width: 700px) {
-      body { padding: 16px 10px 40px; }
-
-      header { padding: 60px 20px 24px; }
-      header h1 { font-size: 1.4rem; }
-      header p  { font-size: 0.85rem; }
-
-      .day-block { padding: 0 14px 24px; }
-      .day-heading { margin: 20px -14px 0; font-size: 1rem; padding: 10px 14px; }
-
-      /* stack table into card-like rows on small screens */
-      table, thead, tbody, tr, th, td { display: block; }
-      thead { display: none; }
-
-      tbody tr {
-        border: 1px solid rgba(180, 140, 220, 0.25);
-        border-radius: 8px;
-        margin-bottom: 10px;
-        padding: 10px 12px;
-        background: rgba(255,255,255,0.4);
-      }
-      tbody tr:hover td { background: none; }
-
-      td {
-        padding: 3px 0;
-        border-bottom: none;
-        font-size: 0.88rem;
-      }
-
-      .time-cell {
-        font-size: 0.8rem;
-        color: #7a4aaa;
-        margin-bottom: 4px;
-      }
-
-      .location-cell::before { content: "📍 "; font-style: normal; }
-      .location-cell { margin-top: 4px; }
-
-      .leaf { width: 120px; height: 130px; }
-    }
-
-    @media (max-width: 400px) {
-      header h1 { font-size: 1.2rem; }
-      .leaf { width: 90px; height: 100px; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <div class="card">
@@ -288,7 +46,7 @@
           <td class="time-cell">9:15 – 10:15 am</td>
           <td>
             <span class="session-label">Breakout Session</span>
-            <div class="session-title"><a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQBwebAEcKYUQ4ty2PXJqbl3ATupOixiqJo21ouc8AessPU?e=s63Os9" target="_blank" rel="noopener"><span style="color:red">*</span>We're in this Together: Integrating Provider-, Team-, and Care Systems-approaches to Mitigate Compassion Fatigue</a></div>
+            <div class="session-title"><span style="color:red">*</span><button class="expand-btn" onclick="toggleExpand(this)">We're in this Together: Integrating Provider-, Team-, and Care Systems-approaches to Mitigate Compassion Fatigue</button><div class="expand-content"><span>Mental health providers are at especially high risk for burnout and compassion fatigue. While they report being wholly committed to (and loving) their work, they are oftentimes overwhelmed with the intensity of their caseloads, workplace and interdisciplinary politics, administrative demands, and tendencies to underreport personal struggles or seek help. In this workshop, empirically supported understandings of this problem, alongside strategies across provider-, team-, and care systems- levels to prevent and/or mitigate it, will be shared.</span></div></div>
             <div class="session-detail">Tai Mendenhall, Professor, University of Minnesota</div>
           </td>
           <td class="location-cell">Big 12</td>
@@ -297,7 +55,11 @@
         <tr>
           <td class="time-cell"></td>
           <td>
-            <div class="session-title"><span style="color:red">*</span><a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQAxA7SgaRXQSpSUiNy-w9qaAaK7FPlF8Qo-MxSHc4n-lPg?e=ci4jkb" target="_blank" rel="noopener">Modern Family Therapy</a></div>
+            <div class="session-title"><span style="color:red">*</span><button class="expand-btn" onclick="toggleExpand(this)">Modern Family Therapy</button><div class="expand-content"><span>Learning family therapy from “The Greats” can be intimidating and confusing. 
+How do these founding theories apply to modern-day family struggles? How am 
+I actually supposed to implement any of these skills in the room? In this 
+workshop, we will discuss the challenges a therapist faces when doing family 
+therapy and the flexibility that is critical for having success.</span></div></div>
             <div class="session-detail">Heidi Vela, LCMFT, Private Practice, Manhattan, KS</div>
           </td>
           <td class="location-cell">Flint Hills Room</td>
@@ -307,7 +69,12 @@
           <td class="time-cell">10:30 – 11:30 am</td>
           <td>
             <span class="session-label">Breakout Session</span>
-            <div class="session-title"><span style="color:red">*</span><a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQAJfAY1f5HiQY8s0p7kJa5LAcZstMjJQoE3WYCfw-6RsdM?e=fIx00e" target="_blank" rel="noopener">Therapists in Action: Community Activism and Resistance</a></div>
+            <div class="session-title"><span style="color:red">*</span><button class="expand-btn" onclick="toggleExpand(this)">Therapists in Action: Community Activism and Resistance</button><div class="expand-content"><span> This session will provide a discussion about the role therapists play in our 
+communities outside of the therapy room. This panel will summarize the 
+presenter’s experience in community activism and resistance, including how 
+being a therapist informed her approaches. The session will also promote 
+audience discussion about activism in other environments that promote the 
+health and well-being of communities and families.</span></div></div>
             <div class="session-detail">Heather Love, Associate Professor, University of Alabama</div>
           </td>
           <td class="location-cell">Big 12</td>
@@ -316,7 +83,12 @@
         <tr>
           <td class="time-cell"></td>
           <td>
-            <div class="session-title"><span style="color:red">*</span>Panel: <a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQCgGGhixNyMR468dxen9hqjAZFbRBYXtom4JWO-yAPFbKQ?e=EyCPxY" target="_blank" rel="noopener">Self-care</a></div>
+            <div class="session-title"><span style="color:red">*</span>Panel: <button class="expand-btn" onclick="toggleExpand(this)">Self-care</button><div class="expand-content"><span>This panel will center on self-care in the context of therapeutic work, exploring 
+how clinicians attend to their own well-being while supporting others. Panelists 
+will discuss the realities of therapist stress, burnout, and compassion fatigue, 
+and reflect on approaches to sustaining personal and professional balance. 
+Attendees can expect a thoughtful conversation about boundaries, support 
+systems, and cultivating longevity and meaning in clinical practice.</span></div></div>
             <div class="session-detail">
               Moderator: Jurdene Coleman, Owner, Sage and Summit Therapy and Consulting<br/>
               Brooke Balderson, LMFT, Kelly and Associates Therapeutic Services<br/>
@@ -359,7 +131,12 @@
           <td class="time-cell">2:15 – 4:15 pm</td>
           <td>
             <span class="session-label">Special Panel</span>
-            <div class="session-title"><a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQA-9vIcaRnYTIG795Wsfa35AUy2DHDuxMyokoKyPNeMtbs?e=7EDDV3" target="_blank" rel="noopener">The Plight of Immigration</a></div>
+            <div class="session-title"><button class="expand-btn" onclick="toggleExpand(this)">The Plight of Immigration</button><div class="expand-content"><span>Panelists will discuss the contemporary challenges faced by immigrant families 
+today and how best to serve their mental health needs. Members of the panel 
+have served immigrants and refugees in a wide range of roles, including leading 
+organizations that provide direct mental health care, resettlement services, and 
+legal assistance, as well as advocating for fair and compassionate policies that 
+support immigrant families.</span></div></div>
             <div class="session-detail">
               Moderator: Marcos Mendez, Staff Psychotherapist/Training Manager, Counseling and Psychological Services, K-State<br/>
               Robbin Cole, Pawnee Mental Health CEO (retired)<br/>
@@ -374,7 +151,12 @@
           <td class="time-cell">4:30 – 5:30 pm</td>
           <td>
             <span class="session-label">Breakout Session</span>
-            <div class="session-title"><span style="color:red">*</span><a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQAQkFRAkAZ8QZT6WDQ_QdOYAZrgj99Iw64G3cx5c8QIVgg?e=DSFi2i" target="_blank" rel="noopener">The Role of Therapy Dogs in Trauma-Informed Care</a></div>
+            <div class="session-title"><span style="color:red">*</span><button class="expand-btn" onclick="toggleExpand(this)">The Role of Therapy Dogs in Trauma-Informed Care</button><div class="expand-content"><span>Research shows that therapy dogs can play a valuable role in the recovery and 
+healing of trauma survivors. Interacting with a trained therapy dog can reduce 
+trauma-related stress, promote emotional safety, and build trust. Their 
+nonjudgmental presence can ease anxiety during therapy, improve mood 
+regulation, and encourage engagement. Acting as healthy and secure 
+attachment figures, therapy dogs help survivors regain confidence and trust.</span></div></div>
             <div class="session-detail">Kara Langin, Assistant Professor, Washburn University</div>
           </td>
           <td class="location-cell">Big 12</td>
@@ -383,7 +165,12 @@
         <tr>
           <td class="time-cell"></td>
           <td>
-            <div class="session-title">Panel: <a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQA4hZ27SoO_T4R6r3nhfKGQAXHm9AO6VEqScPwPm18FdS0?e=97hlxN" target="_blank" rel="noopener">Preparing for Academic Positions</a></div>
+            <div class="session-title">Panel: <button class="expand-btn" onclick="toggleExpand(this)">Preparing for Academic Positions</button><div class="expand-content"><span>Panelists will explore what to expect when considering and pursuing academic 
+faculty positions. They will share perspectives on academic careers, 
+institutional contexts, and the broader realities of faculty roles. Discussion will 
+offer reflections on decision-making and fit, and provide an opportunity for 
+attendees to hear candid insights and ask questions about life in academia at 
+research- and teaching-focused institutions.</span></div></div>
             <div class="session-detail">
               Moderator: Jared Durtschi, Professor, CFT, K-State<br/>
               Stacy Conner, Associate Professor/Associate Dean, Washburn University<br/>
@@ -445,7 +232,14 @@
           <td class="time-cell">9:00 – 11:00 am</td>
           <td>
             <span class="session-label"><span style="color:red">*</span>Plenary</span>
-            <div class="session-title"><a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQDyt-UZOzZHQJk1u7v5rgGNAbqvoJtr-1ouh7H6qQNHQTc?e=z3AhdG" target="_blank" rel="noopener">Holding Space for Healing: Mental Health Practices for Communities Navigating Adversity</a></div>
+            <div class="session-title"><button class="expand-btn" onclick="toggleExpand(this)">Holding Space for Healing: Mental Health Practices for Communities Navigating Adversity</button><div class="expand-content"><span>In this presentation, we will discuss how to be an encompassing clinician for 
+clients who do not identify as White. We will take a deep dive into what it means 
+to be an encompassing therapist and how to represent yourself and educate 
+yourself on the realities these communities are facing currently and historically, 
+to ensure that your practice, whether individual or group, decenters ideologies 
+and norms that are exclusionary. We will also discuss special and ethical 
+considerations when it comes to diagnosing these populations to ensure 
+acceptance and safety.</span></div></div>
             <div class="session-detail"><a href="https://ksuemailprod-my.sharepoint.com/personal/jbaptist_ksu_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fjbaptist%5Fksu%5Fedu%2FDocuments%2FJurich%202026%2FJurich%20conference%202026%2FBrochure%20info%2FBio%20%26%20Abstracts%2FPDFs%2FLorin%20K%2Epdf&parent=%2Fpersonal%2Fjbaptist%5Fksu%5Fedu%2FDocuments%2FJurich%202026%2FJurich%20conference%202026%2FBrochure%20info%2FBio%20%26%20Abstracts%2FPDFs&ga=1" target="_blank" rel="noopener">Lorin Kelly</a>, LCMFT, Owner, Kelly &amp; Associates Therapeutic Services, Lincoln, NE</div>
           </td>
           <td class="location-cell">Big 12</td>
@@ -464,7 +258,13 @@
         <tr>
           <td class="time-cell"></td>
           <td>
-            <div class="session-title">Panel: <a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQDgXqGCKr-JRIHzX8CK2FZ7AZ0dAlPx7CKk8nqYnWFvuFM?e=ZfjvNN" target="_blank" rel="noopener">Preparing for Clinical Positions</a></div>
+            <div class="session-title">Panel: <button class="expand-btn" onclick="toggleExpand(this)">Preparing for Clinical Positions</button><div class="expand-content"><span>Panelists will provide an overview of clinical career options, with a focus on 
+distinctions among community mental health settings, group practices, and 
+private practice. They will share perspectives on the nature of clinical work 
+across these contexts, including differences in roles, work environments, 
+populations served, and professional expectations. Attendees can expect a 
+candid discussion of pathways into these settings and broader considerations 
+when exploring clinical careers.</span></div></div>
             <div class="session-detail">
               Moderator: Melissa Greer, Owner, Insight Psychological Services<br/>
               Cameron Bennett, Owner, JMB Therapy<br/>
@@ -491,7 +291,14 @@
   <div class="ceu-note"><span style="color:red">*</span>CEUs on Ethics and Psychopathology available for starred sessions</div>
 
   <footer><a href="https://ksuemailprod-my.sharepoint.com/:b:/g/personal/jbaptist_ksu_edu/IQDOcRWx62BQTb592KsiEOFsAZhUd8lndvH_NjRzSi-eIBI?e=sGAyF4" target="_blank" rel="noopener">Tony Jurich</a> &nbsp;·&nbsp; &copy; <span id="yr"></span> All rights reserved</footer>
-  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    function toggleExpand(btn) {
+      var content = btn.nextElementSibling;
+      var isOpen = content.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+    }
+  </script>
 
 </div><!-- /card -->
 </body>
